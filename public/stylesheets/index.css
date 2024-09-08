@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(230, 225, 225);
+}
+.signup{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: white;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 60px;
+    position: absolute;
+}
+.container .sinupdetail{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .sinupdetail .box{
+    background-color: white;
+    height: 80vh;
+    width: 25vw;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    border-radius: 10px;
+}
+.container .sinupdetail .box form{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; */
+    width: 220px;
+}
+.container .sinupdetail .box img{
+    margin-top: 10px;
+    height: 50px;
+    width: 50px;
+}
+.container .sinupdetail .box form .login{
+    font-size: 1.4rem;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container .sinupdetail .box form input{
+    margin-top: 10px;
+    height: 30px;
+    width: 200px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.container .sinupdetail .box form a{
+    text-decoration: none;
+    /* text-align: left; */
+}
+.container .sinupdetail .box form button{
+    width: 200px;
+    height: 30px;
+    border-radius: 15px;
+    margin: 10px;
+    /* padding: auto; */
+}
+.container .sinupdetail .box form input.button1{
+    width: 200px;
+    height: 30px;
+    border-radius: 15px;
+    margin: 10px;
+    color: white;
+    background-color: red;
+    font-weight: 600;
+}
+.container .sinupdetail .box form button.button2{
+    color: white;
+    background-color: blue;
+    font-weight: 600;
+}
+.container .sinupdetail .box form button.button3{
+    color: black;
+    background-color: rgb(215, 212, 212);
+    font-weight: 700;
+}
+.container .sinupdetail .box form .line{
+    border-top: 2px solid black;
+    margin: 10px;
+}
+
+.container .sinupdetail .box form .not_on_pinterest{
+    font-size: 0.8rem;
+    margin-bottom: 200px;
+}
+
+.error{
+    font-weight: 500;
+    color: red;
+    text-transform: capitalize;
+    margin: 7px 0;
+}

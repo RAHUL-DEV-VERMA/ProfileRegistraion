@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <div id="sinupPage">
+        <div class="container">
+            <a href="/api/v1/register">
+                <div class="signup">Sign up</div>
+            </a>
+            <div class="sinupdetail">
+                <div class="box">
+                    <div class="form">
+                        <form action="/api/v1/login" method="post">
+                    <div class="login">Login Account to See more</div>
+
+                    <% if(error.length>0){ %>
+                        <p class="error"> <%= error %> </p>
+                        <% } %>
+                            <div>
+                                <input type="email" name="emailId" placeholder="Email Id">
+                            </div>
+                            <div>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                            <a href="">Forget Your Password?</a>
+                            <div><input type="submit" class="button1" value="Login My Account"></div>
+                            <div>OR</div>
+                            <div><button class="button2">Continue with Facebook</button></div>
+                            <div><button class="button3">Continue with Google</button></div>
+                            <div>By contuining you agree to Pinterests Terms and Conditions of Service . Privacy Policy.</div>
+                            <div class="line"> </div>
+                            <a href="/api/v1/register">
+                            <div class="not_on_pinterest">Not created account yet? Sign up</div>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

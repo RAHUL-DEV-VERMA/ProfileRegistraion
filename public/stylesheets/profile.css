@@ -1,0 +1,115 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #ebe9e9;
+}
+
+.container{
+    margin: auto;
+    width: 80%;
+    background-color: #ffff;
+    padding: 20px;
+}
+
+.container .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height: 300px; */
+}
+
+.container .card .profile-picture {
+    position: relative;
+}
+
+.container .card .profile-picture div{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid red;
+}
+.container .card .profile-picture span{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(210, 208, 208);
+    border-radius: 50%;
+    bottom: 15px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .card .profile-picture span:hover{
+    cursor: pointer;
+}
+.container .card .profile-picture span img{
+    height: 15px;
+    width: 15px;
+}
+.container .card .profile-picture div img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.container .card .name{
+    text-align: center;
+}
+
+.container .card .username{
+    text-align: center;
+}
+
+.container .card .tagline{
+    text-align: center;
+}
+
+.container .card .description{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.container .card a{
+    text-decoration: none;
+}
+.container .card form{
+    margin-top: 15px;
+}
+
+.container .card .button{
+    margin-top: 10px;
+    padding: 5px;
+    margin: 5px;
+    border: 3px solid black;
+    background-color: red;
+    color: white;
+}
+
+.container-card{
+    width: 70%;
+    margin: auto;
+    flex-wrap: wrap;
+}
+.container-card .card img{
+    height: 500px;
+    width: 300px;
+}
+
+
+.container-card .card{
+    margin-top: 20px;
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: start; */
+
+}
+.container-card .card .img-body{
+    background: white;
+    margin: 10px;
+    border: 1px solid black;
+}

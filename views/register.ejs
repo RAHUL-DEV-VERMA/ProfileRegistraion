@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+
+<body>
+    <div id="sinupPage">
+        <div class="container">
+            <a href="/api/v1/login">
+                <div class="signup">Log in</div>
+            </a>
+            <div class="sinupdetail">
+                <div class="box">
+                    <div class="form">
+                        <form action="/api/v1/register" method="post">
+                            <div class="login">Fill the Below Form to Create Your Account</div>
+                            <div>
+                                <input type="text" name="firstName" placeholder="First Name">
+                            </div>
+                            <div>
+                                <input type="text" name="lastName" placeholder="Last Name">
+                            </div>
+                            <div>
+                                <input type="email" name="emailId" placeholder="Email">
+                            </div>
+                            <div>
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" name="dob" placeholder="00/00/0000">
+                            </div>
+                            <div>
+                                <!-- <label for="gender"></label> -->
+                                <select name="gender" id="gender">
+                                    <option value="" disabled selected>Select Your Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                            <!-- <a href="">Forget Your Password?</a> -->
+                            <div><input type="submit" class="button1" value="Register Account"></div>
+                            <div>OR</div>
+                            <div><button class="button2">Continue with Facebook</button></div>
+                            <div><button class="button3">Continue with Google</button></div>
+                            <div>By contuining you agree to Pinterests Terms and Conditions of Service . Privacy Policy.
+                            </div>
+                            <div class="line"> </div>
+                            <a href="/api/v1/login">
+                                <div class="not_on_pinterest">Already I have Account? Login</div>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

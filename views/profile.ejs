@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <form id="upload-form" hidden action="/api/v1/profileUpload" method="post" enctype="multipart/form-data">
+                <input type="file" name="image">
+            </form>
+            <div class="profile-picture">
+                <span id="upload-icon"><img src="/images/icons8-pencil-16.png" alt=""></span>
+                <div><img src="/images/uploads/<%= user.profileImage %>" alt=""></div>
+            </div>
+            <div>
+                <h2 class="name">
+                    <%= user.firstName %>&nbsp;&nbsp;<%= user.lastName %>
+                </h2>
+                <h3 class="username">@<%= user.emailId %>
+                </h3>
+                <p class="tagline">
+                    <%= user.gender %>
+                </p>
+                <p class="description">DOB: <%= user.dob %>
+                </p>
+                <p class="mobile">Mobile: <%= user.countryCode %>&nbsp;<%= user.mobile %>
+                </p>
+                <p class="address">Address: <%= user.address %>
+                </p>
+            </div>
+            <div>
+                <br>
+                <a href="/api/v1/logout" class="button">Logout</a>
+                <a href="#" id="update-profile-button" class="button">Update Profile</a>
+            </div>
+            <form id="update-form" hidden action="/api/v1/updateProfile" method="post">
+                <h3>Update Profile :</h3>
+                <label for="firstName">First Name:</label>
+                <input type="text" name="firstName" placeholder="Enter first name" value="<%= user.firstName %>">
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="lastName" placeholder="Enter last name" value="<%= user.lastName %>">
+
+                <label for="emailId">Email:</label>
+                <input type="email" name="emailId" placeholder="Enter email" value="<%= user.emailId %>">
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" name="dob" value="<%= user.dob.toISOString().split('T')[0] %>">
+
+                <label for="gender">Gender:</label>
+                <select name="gender">
+                    <option value="male" <%=user.gender==='male' ? 'selected' : '' %>>Male</option>
+                    <option value="female" <%=user.gender==='female' ? 'selected' : '' %>>Female</option>
+                    <option value="other" <%=user.gender==='other' ? 'selected' : '' %>>Other</option>
+                </select>
+
+                <label for="countryCode">Country Code:</label>
+                <input type="text" name="countryCode" placeholder="Enter country code" value="<%= user.countryCode %>">
+
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" name="mobile" placeholder="Enter mobile number" value="<%= user.mobile %>">
+
+
+                <label for="address">Address:</label>
+                <input type="text" name="address" placeholder="Enter your address" value="<%= user.address %>">
+
+                <input type="submit" value="Update Profile">
+            </form>
+        </div>
+        <br>
+        <div>
+            <h3>Upload Image :</h3>
+            <form action="/api/v1/upload" method="post" enctype="multipart/form-data">
+                <input type="text" name="filecaption" placeholder="Some Caption">
+                <input type="file" name="file">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+    <div class="container-card">
+        <div class="card">
+            <% user.images.forEach(function(img){ %>
+                <div class="img-body">
+                    <img src="/images/uploads/<%= img.image %>" alt="">
+                    <div class="card-body">
+                        <h2 class="card-title">
+                            <%= img.imageNote %>
+                        </h2>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const updateProfileButton = document.getElementById("update-profile-button");
+            const updateForm = document.getElementById("update-form");
+
+            updateProfileButton.addEventListener("click", function (event) {
+                event.preventDefault();
+                if (updateForm.style.display === "none" || updateForm.style.display === "") {
+                    updateForm.style.display = "block";
+                } else {
+                    updateForm.style.display = "none";
+                }
+            });
+        });
+
+        let upload_icon = document.querySelector("#upload-icon");
+        let upload_form_input = document.querySelector("#upload-form input");
+        upload_icon.addEventListener("click", function () {
+            upload_form_input.click();
+        });
+
+        upload_form_input.addEventListener("change", function () {
+            document.querySelector("#upload-form").submit();
+        });
+    </script>
+</body>
+
+</html>
