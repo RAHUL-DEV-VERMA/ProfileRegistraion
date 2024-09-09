@@ -5,10 +5,12 @@ import { config } from "dotenv";
 import { connectDB } from "./utils/feature.js";
 import session from "express-session";
 import flash from "connect-flash";
-// *dy 84839
+
 // Importing Routes
 import loginRouter from "./routes/login.js";
 import profileRouter from "./routes/profile.js";
+import profileSelectionRouter from "./routes/profileSelection.js";
+import documentUpload from "./routes/document.js";
 
 const app = express();
 
@@ -45,8 +47,7 @@ app.get("/", (req, res)=>{
 })
 
 // calling api 
-app.use("/api/v1" , loginRouter);
-app.use("/api/v1" , profileRouter);
+app.use("/api/v1" , loginRouter, profileRouter, profileSelectionRouter, documentUpload );
 
 app.listen(PORT, ()=>{
     console.log(`Server is live on localhost PORT ${PORT}`)

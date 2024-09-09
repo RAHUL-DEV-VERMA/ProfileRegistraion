@@ -1,19 +1,20 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
-body{
+
+body {
     background-color: #ebe9e9;
 }
 
-.container{
+.container {
     margin: auto;
     width: 80%;
     background-color: #ffff;
     padding: 20px;
 }
 
-.container .card{
+.container .card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,14 +25,15 @@ body{
     position: relative;
 }
 
-.container .card .profile-picture div{
+.container .card .profile-picture div {
     height: 150px;
     width: 150px;
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid red;
 }
-.container .card .profile-picture span{
+
+.container .card .profile-picture span {
     position: absolute;
     width: 30px;
     height: 30px;
@@ -43,64 +45,65 @@ body{
     justify-content: center;
     align-items: center;
 }
-.container .card .profile-picture span:hover{
+
+.container .card .profile-picture span:hover {
     cursor: pointer;
 }
-.container .card .profile-picture span img{
+
+.container .card .profile-picture span img {
     height: 15px;
     width: 15px;
 }
-.container .card .profile-picture div img{
+
+.container .card .profile-picture div img {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.container .card .name{
+.container .card .name {
     text-align: center;
 }
 
-.container .card .username{
-    text-align: center;
-}
-
-.container .card .tagline{
-    text-align: center;
-}
-
-.container .card .description{
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.container .card a{
+.container .card a {
     text-decoration: none;
 }
-.container .card form{
+
+.container .card form {
     margin-top: 15px;
 }
 
-.container .card .button{
+.container .card .button {
     margin-top: 10px;
-    padding: 5px;
     margin: 5px;
-    border: 3px solid black;
-    background-color: red;
+    background-color: #4CAF50;
+    border: none;
     color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.container-card{
+.container .card .button:hover {
+    background-color: #3e8e41;
+}
+
+.container-card {
     width: 70%;
     margin: auto;
     flex-wrap: wrap;
 }
-.container-card .card img{
+
+.container-card .card img {
     height: 500px;
     width: 300px;
 }
 
 
-.container-card .card{
+.container-card .card {
     margin-top: 20px;
     border: 2px solid black;
     display: flex;
@@ -108,7 +111,8 @@ body{
     /* align-items: start; */
 
 }
-.container-card .card .img-body{
+
+.container-card .card .img-body {
     background: white;
     margin: 10px;
     border: 1px solid black;

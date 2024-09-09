@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Upload</title>
+    <link rel="stylesheet" href="/stylesheets/document.css">
+</head>
+<body>
+    <h1>Upload Document</h1>
+
+    <!-- Form to upload document -->
+    <form action="/api/v1/upload-document" method="POST" enctype="multipart/form-data">
+        <label for="file">Upload File (PNG, JPEG, JPG, PDF | 25KB - 5MB):</label>
+        <input type="file" name="document" id="file" required>
+        
+        <label for="filecaption">File Note:</label>
+        <input type="text" name="filecaption" id="filecaption" required>
+
+        <button type="submit">Upload Document</button>
+    </form>
+
+    <h2>Uploaded Documents</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+                <th>File Name</th>
+                <th>File Note</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (selectedProfile && selectedProfile.documents && selectedProfile.documents.length > 0) { %>
+                <% selectedProfile.documents.forEach((document, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= document.image %></td>
+                    <td><%= document.imageNote %></td>
+                    <td><a href="/Images/uploads/<%= document.image %>" target="_blank">Open</a></td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4">No documents uploaded yet.</td>
+                </tr>
+            <% } %>
+        </tbody>
+        
+    </table>
+
+    <a class="back_to_profile" href="/api/v1/profile">Back to Profile</a>
+</body>
+</html>

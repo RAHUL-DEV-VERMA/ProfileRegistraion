@@ -1,0 +1,65 @@
+<!-- views/selectProfile.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Profile</title>
+  <style>
+    body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .container {
+      height: 80vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .button {
+      margin-top: 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #3e8e41;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+    <h1>Select a Profile</h1>
+    <form action="/api/v1/selectProfile" method="POST">
+      <% profiles.forEach(profile=> { %>
+        <div>
+          <input type="radio" name="selectedProfile" value="<%= profile._id %>" required>
+          <label>
+            <%= profile.firstName %>
+              <%= profile.lastName %> (DOB: <%= profile.dob.toISOString().split('T')[0] %>)
+          </label>
+        </div>
+        <% }) %>
+          <button class="button" type="submit">Proceed</button>
+    </form>
+  </div>
+  </div>
+</body>
+
+</html>

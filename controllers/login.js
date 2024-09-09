@@ -22,28 +22,62 @@ const userRegistraion = async (req, res, next) => {
     let user = await User.findOne({ emailId });
 
     if (user) {
-      return res.status(400).json({
-        success: false,
-        message: "User already registered",
+
+       // Check if the user already has two profiles
+       if (user.profiles.length >= 2) {
+        return res.status(400).json({
+          success: false,
+          message: "You have reached the maximum of 2 profiles for this email ID.",
+        });
+      }
+
+      // Check if a profile with the same firstName, lastName, and dob already exists
+      const existingProfile = user.profiles.find(
+        (profile) =>
+          profile.firstName === firstName &&
+          profile.lastName === lastName &&
+          profile.dob.toISOString() === new Date(dob).toISOString()
+      );
+
+      if (existingProfile) {
+        return res.status(400).json({
+          success: false,
+          message: "User already registered with this profile",
+        });
+      }
+
+      // Add new profile
+      user.profiles.push({
+        firstName,
+        lastName,
+        gender,
+        dob,
+        mobile: req.body.mobile || "",
+        countryCode: req.body.countryCode || "",
+        address: req.body.address || "",
+      });
+      await user.save();
+      return res.status(200).json({
+        success: true,
+        message: "Profile added successfully",
       });
     }
 
-    const newUser = await User({
-      firstName,
-      lastName,
+    // Create a new user with the first profile
+    const newUser = new User({
       emailId,
-      gender,
-      dob,
+      profiles: [
+        {
+          firstName,
+          lastName,
+          gender,
+          dob,
+          mobile: req.body.mobile || "",
+          countryCode: req.body.countryCode || "",
+          address: req.body.address || "",
+        },
+      ],
     });
-
-    // User.register(newUser, req.body.password).then(function (registereduser) {
-    //   passport.authenticate("local")(req, res, function () {
-    //     return res.status(200).json({
-    //       success: true,
-    //       message: "User Created Successfully",
-    //     });
-    //   });
-    // });
 
     User.register(newUser, password, (err, registeredUser) => {
       if (err) {
@@ -52,7 +86,7 @@ const userRegistraion = async (req, res, next) => {
           success: false,
           message: "An error occurred during registration",
         });
-      };
+      }
       passport.authenticate("local")(req, res, () => {
         return res.status(200).json({
           success: true,
@@ -64,7 +98,7 @@ const userRegistraion = async (req, res, next) => {
     console.log("Unhandled error: ", error);
     return res.status(500).json({
       success: false,
-      message: "An error occured during registration",
+      message: "An error occurred during registration",
     });
   }
 };
@@ -75,12 +109,26 @@ const loginPage = (req, res, next) => {
 };
 
 
-const userLogin = (req, res, next)=>{
-  passport.authenticate("local", {
-    successRedirect: "/api/v1/profile",
-    failureRedirect: "/api/v1/login",
-    failureFlash: true
-  }) (req, res, next)
-}
+const userLogin = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+    if (!user) {
+      return res.redirect("/api/v1/login");
+    }
+
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+
+      // If multiple profiles exist, redirect to profile selection page
+      if (user.profiles.length > 1) {
+        return res.redirect("/api/v1/selectProfile");
+      } else {
+        // If only one profile exists, proceed to the dashboard
+        req.session.selectedProfile = user.profiles[0]._id;
+        return res.redirect("/api/v1/profile");
+      }
+    });
+  })(req, res, next);
+};
 
 export { registrationPage, userRegistraion, loginPage, userLogin };

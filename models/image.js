@@ -4,7 +4,6 @@ const imageSchema = new mongoose.Schema(
   {
     imageNote: {
       type: String,
-      required: true,
     },
     image: {
       type: String,
